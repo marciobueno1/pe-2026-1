@@ -94,3 +94,38 @@ void selecaoDireta (double v[], int n) {
         v[menor] = aux;
     }
 }
+
+void bubblesort (double v[], int n) {
+    int i, fim, pos, troca;
+    double chave;
+    troca = 1; fim = n - 2; pos = 0;
+    while (troca == 1) {
+        troca = 0;
+        for (i = 0; i <= fim; i++) {
+            if (v[i] > v[i+1]) {
+                chave = v[i]; v[i] = v[i+1]; v[i+1] = chave;
+                pos = i; troca = 1;
+            }
+        }
+        fim = pos-1;
+    }
+}
+
+int buscaBinaria (double v[], int n, double chave) {
+    int inicio = 0, meio, fim = n - 1;
+
+    do {
+        meio = (inicio + fim) / 2;
+        if (v[meio] > chave) {
+            fim = meio - 1;
+        } else {
+            inicio = meio + 1;
+        }
+    } while (chave != v[meio] && inicio <= fim);
+    
+    if (chave == v[meio]) {
+        return meio; // retorna a posição
+    } else {
+        return -1; // não achou
+    }
+}
